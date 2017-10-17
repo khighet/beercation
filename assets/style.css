@@ -42,6 +42,7 @@ body{
  #map {
             height: 500px;
             width: 100%;
+            background-color: rgba(255, 253, 204, 0.3);
 }
 
 .resultsTitle {
@@ -52,7 +53,7 @@ body{
 
 #listing {
             width: 100%;
-            background-color: rgba(255, 253, 204, 0.4);
+            background-color: rgba(255, 253, 204, 0.3);
             height: 600px;
             overflow: auto;
             top: 0px;
@@ -61,33 +62,32 @@ body{
 }
 
 #findhotels {
-            text-align: right;
-            width: 200px;
+            text-align: center;
             font-size: 14px;
+            font-weight: bolder;
             padding: 4px;
             z-index: 5;
             background-color: rgb(252, 217, 63);
 }
 
 #locationField {
-            width: 190px;
-            height: 25px;
-            left: 108px;
-            top: 0px;
+            text-align: center;
             z-index: 5;
-            background-color: rgb(252, 217, 63);
+            background-color: rgb(252, 217, 63)
 }
 
 #controls {
             left: 300px;
-            width: 140px;
+            width: 100%;
             top: 0px;
             z-index: 5;
             background-color: rgb(252, 217, 63);
+            text-align: center;
 }
 
 #autocomplete {
-            width: 200px;
+            width: 100%;
+            text-align: center;
 }
 
 #country {
