@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<title>Plan a Beer-cation!</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+	<link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
+
+	<link rel="stylesheet" href="assets/style.css">
+
+</head>
+
+<body>
+
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-12">
+			<div class="jumbotron">
+				<h1 class="display-3" id="logo">Beercation!</h1>
+  				<hr class="my-4">
+  				<p class="titleline">Chose a city. Pick your hotel. Find the best beer in town.</p>
+  			</div>
+  			</div>
+  		</div>
+  		
+  		<div class="row">
+  			<div class="col-md-12" id="intro">
+  				<hr class="boldbar">
+  				<p><strong>In need of a vacation? Who isn't! Love beer? Who doesn't! Well, welcome to Beercation, the easiest way to find a cold brew close to your hotel!</strong> Use our tool to find hotels in your ideal city and then narrow down all of the best places to grab a brew. Ready to go? Use our page to schedule your Uber to and from the bar(s) of your choice. Remember, always drink responsibly and never drink and drive! Go ahead, plan your Beercation!</p>
+  				<hr class="boldbar">
+  			</div>
+  		</div>
+
+  		<br>
+  		
+  		<br>
+  		
+  		<div class="row">
+  			<div class="col-md-2" id="listing">
+  				<h1 class="resultsTitle">HOTELS</h1>
+        				<table id="resultsTable">
+            					<tbody id="results"></tbody>
+        				</table>
+    			</div>
+
+  			<div class="col-md-8">
+  				<div class="row" id="mapsSection">
+  					<div class="col-md-12" id="form">
+  						<div id="findhotels">
+        							Where do you want to get away:
+    						</div>
+						<div id="locationField">
+        							<input id="autocomplete" placeholder="Enter a city" type="text" />
+    						</div>
+						<div id="controls">
+        							<select id="country">
+            								<option value="all">All</option>
+            								<option value="au">Australia</option>
+            								<option value="br">Brazil</option>
+            								<option value="ca">Canada</option>
+            								<option value="fr">France</option>
+            								<option value="de">Germany</option>
+            								<option value="mx">Mexico</option>
+            								<option value="nz">New Zealand</option>
+            								<option value="it">Italy</option>
+            								<option value="za">South Africa</option>
+            								<option value="es">Spain</option>
+            								<option value="pt">Portugal</option>
+           								<option value="us" selected>U.S.A.</option>
+            								<option value="uk">United Kingdom</option>
+        							</select>
+    						</div>
+  					</div>
+  				</div>
+  				<div class="row">
+  					<div class="col-md-12">
+  						<div id="map"></div>
+  						<div style="display: none">
+        							<div id="info-content">
+            								<table>
+                									<tr id="iw-url-row" class="iw_table_row">
+                    									<td id="iw-icon" class="iw_table_icon"></td>
+                    									<td id="iw-url"></td>
+                									</tr>
+                									<tr id="iw-address-row" class="iw_table_row">
+                    									<td class="iw_attribute_name">Address:</td>
+                    									<td id="iw-address"></td>
+                									</tr>
+                									<tr id="iw-phone-row" class="iw_table_row">
+                    									<td class="iw_attribute_name">Telephone:</td>
+                    									<td id="iw-phone"></td>
+                									</tr>
+                									<tr id="iw-rating-row" class="iw_table_row">
+                    									<td class="iw_attribute_name">Rating:</td>
+                    									<td id="iw-rating"></td>
+                									</tr>
+                									<tr id="iw-website-row" class="iw_table_row">
+                    									<td class="iw_attribute_name">Website:</td>
+                    									<td id="iw-website"></td>
+                									</tr>
+            								</table>
+        							</div>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="col-md-2" id="listing">
+  				<h1 class="resultsTitle">GRAB A BEER</h1>
+        				<table id="resultsTable">
+            					<tbody id="results"></tbody>
+        				</table>
+    			</div>
+    		</div>
+
+  		<br>
+
+  		<div class="row">
+    			<div class="col-md-12">
+    					<!--This is where we will display bars/beer/uber/whatever we come up with-->
+    			</div>
+    		</div>
+  	</div>		
+  	<br>
+  	<br>
+  	<!--<nav class="navbar fixed-bottom navbar-light bg-light" id="copyright">
+  		<a class="navbar-brand" href="#">Copyright &copy; 2017</a>
+	</nav>-->
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJGm6no2MmE4hDqQRDCx-niat2pnmFs3Q&libraries=places&callback=initMap"
+        async defer></script>
+
+<script src="assets/app.js"></script>
+
+</html>
