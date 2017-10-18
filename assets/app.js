@@ -321,3 +321,40 @@
                 document.getElementById('iw-website-row').style.display = 'none';
             }
         }
+
+
+        var config = {
+    apiKey: "AIzaSyBdq4yukufhzQNtwWMLxLI8Ps-cMkPf1T0",
+    authDomain: "beercation-8cecd.firebaseapp.com",
+    databaseURL: "https://beercation-8cecd.firebaseio.com",
+    projectId: "beercation-8cecd",
+    storageBucket: "beercation-8cecd.appspot.com",
+    messagingSenderId: "151097719331"
+};
+
+firebase.initializeApp(config);
+
+// Create a variable to reference the database.
+var database = firebase.database();
+
+// Initial Values
+var emailArray = [];
+var email = "";
+
+//submits email to an array on click
+$("#submit").on('click', function(){
+  event.preventDefault();
+  
+  email = $('#email-input').val();
+
+  database.ref().push({
+        emailAddress: email,
+      });
+
+  database.ref().on("child_added", function(snapshot){
+    emailAddress = snapshot.val().emailAddress;
+    emailArray.push(emailAddress);
+    console.log(emailArray);
+    });
+
+});
