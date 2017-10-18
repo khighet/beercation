@@ -179,7 +179,7 @@
     </div>
 
     <div id="nearbyBars">
-        <h1>dont push the button</h1>
+        <h1>Bars:</h1>
     </div>
 
     <div id="listing2">
@@ -508,11 +508,18 @@
 
         function clearResults() {
             var results = document.getElementById('results');
+            var results2 = document.getElementById('results2');
             while (results.childNodes[0]) {
                 results.removeChild(results.childNodes[0]);
+                results2.removeChild(results2.childNodes[0]);
             }
             addressVicinity = [];                                   //CLEARS ARRAY
         }
+
+
+
+
+
 
         // Get the place details for a hotel. Show the information in an info window,
         // anchored on the marker for the hotel that the user selected.
