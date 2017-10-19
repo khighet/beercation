@@ -3,6 +3,8 @@
 
 <head>
     <title>Place Autocomplete Hotel Search</title>
+    <!-- jQuery JS 3.1.0 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
@@ -205,6 +207,10 @@
         var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
         var hostnameRegexp = new RegExp('^https?://.+?/');
 
+        var queryURL = "http://api.sqoot.com/v2/deals?api_key=72287g&location=";
+        var term;
+        var searchURL;
+
         var countries = {
             'au': {
                 center: { lat: -25.3, lng: 133.8 },
@@ -311,6 +317,9 @@
                 types: ['lodging']
             };
 
+
+
+
             places.nearbySearch(search, function (results, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     clearResults();
@@ -326,6 +335,7 @@
                             animation: google.maps.Animation.DROP,
                             icon: markerIcon
                         });
+
                         // If the user clicks a hotel marker, show the details of that hotel
                         // in an info window.
                         markers[i].placeResult = results[i];
@@ -339,6 +349,8 @@
 
 
                     }
+                    console.log("test");
+                    sqoot(searchURL);       ////////////<<CALL THE SQOOT FUNCTION///////////
                 }
             });
         }
@@ -584,11 +596,38 @@
                 document.getElementById('iw-website-row').style.display = 'none';
             }
         }
+
+
+
+        /////////////SQOOT API CALL///////////////////////////////
+
+        function sqoot(URL) {    //Add articleLimit param
+            $.ajax({
+                url: URL,
+                method: "GET"
+            }).done(function (response) {
+                console.log(response);
+
+                term = $("#autocomplete").val().trim();
+
+                var searchURL = queryURL + term + "&category_slugs=bars-clubs&per_page=5&page=1&order=distance";
+
+
+            });
+        }
+
+        /////////////^SQOOT API CALL^///////////////////////////////
+
+
+
+
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJGm6no2MmE4hDqQRDCx-niat2pnmFs3Q&libraries=places&callback=initMap"
         async defer></script>
     <!-- jQuery JS 3.1.0 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 </body>
 
 </html>
