@@ -377,12 +377,25 @@ function sqoot(URL) {    //Add articleLimit param
         method: "GET"
     }).done(function (response) {
 
-         var deals = response.deals
+        var deals = response.deals
+        var title = $("#title");
+        var description = $("#description");
+        var untrackedURL = $("#untrackedURL");
 
         for (i = 0; i < deals.length; i++) {
-             $("#title").text(deals[i].deal.title);
-             $("#description").text(deals[i].deal.description);
-             $("#untrackedURL").html(deals[i].deal.untracked_url);
+            
+            var newTitle = $("<h2>" + deals[i].deal.title + "</h2>");
+            title.append(newTitle);
+
+            var newDescription = $("<p>" + deals[i].deal.description);
+            description.append(newDescription);
+
+            var newUntrackedURL = $("<img>" + deals[i].deal.untracked_url);
+            untrackedURL.append(newUntrackedURL);
+
+            console.log(deals[i].deal.title);
+            console.log(deals[i].deal.description);
+            console.log(deals[i].deal.untracked_url);
         }
 
         console.log(response);
