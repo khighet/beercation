@@ -375,6 +375,7 @@ function sqoot(URL) {    //Add articleLimit param
         url: URL,
         method: "GET"
     }).done(function (response) {
+        console.log("Iam here!")
         console.log(response);
 
         term = $("#autocomplete").val().trim();
