@@ -12,10 +12,6 @@
         var countryRestrict = { 'country': 'us' };
         var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
         var hostnameRegexp = new RegExp('^https?://.+?/');
-            
-        var queryURL= "http://api.sqoot.com/v2/deals?api_key=72287g&location=";
-        var term;
-        var searchURL;
 
         var countries = {
             'au': {
@@ -141,6 +137,11 @@
                         addressVicinity.push(thisIsHere);
                     }
 
+                    var queryURL= "http://api.sqoot.com/v2/deals?api_key=72287g&location=";
+                    var term=$("#autocomplete").val().trim();
+                    var searchURL;
+
+                    var searchURL = queryURL + term + "&category_slugs=bars-clubs&per_page=5&page=1&order=distance";
                     sqoot(searchURL);
                 }
             });
@@ -371,19 +372,11 @@ $("#submit").on('click', function(){
 /////////////SQOOT API CALL///////////////////////////////
 
 function sqoot(URL) {    //Add articleLimit param
-    console.log("here is the URL:")
-    console.log(URL)
     $.ajax({
         url: URL,
         method: "GET"
     }).done(function (response) {
-        console.log("Iam here!")
         console.log(response);
-
-        term = $("#autocomplete").val().trim();
-
-        var searchURL = queryURL + term + "&category_slugs=bars-clubs&per_page=5&page=1&order=distance";
-
 
     });
 };
