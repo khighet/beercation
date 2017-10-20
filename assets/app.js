@@ -378,20 +378,23 @@ function sqoot(URL) {    //Add articleLimit param
     }).done(function (response) {
 
         var deals = response.deals
+
         var title = $("#title");
         var description = $("#description");
         var untrackedURL = $("#untrackedURL");
 
+        var couponInfo = $("#info");            //append new elements to the info div
+
         for (i = 0; i < deals.length; i++) {
             
             var newTitle = $("<h2>" + deals[i].deal.title + "</h2>");
-            title.append(newTitle);
+            couponInfo.append(newTitle);
 
             var newDescription = $("<p>" + deals[i].deal.description + "</p>");
-            description.append(newDescription);
+            couponInfo.append(newDescription);
 
             var newUntrackedURL = $("<a>" + deals[i].deal.untracked_url + "</a>");
-            untrackedURL.append(newUntrackedURL);
+            couponInfo.append(newUntrackedURL);
 
             console.log(deals[i].deal.title);
             console.log(deals[i].deal.description);
