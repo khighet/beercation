@@ -135,6 +135,8 @@
                         var thisIsHere = results[i].vicinity, i;
                         addressVicinity.push(thisIsHere);
                     }
+
+                    sqoot(searchURL);
                 }
             });
         }
@@ -322,8 +324,10 @@
             }
         }
 
+/////////////FIREBASE EMAIL///////////////////////////////
 
-        var config = {
+
+    var config = {
     apiKey: "AIzaSyBdq4yukufhzQNtwWMLxLI8Ps-cMkPf1T0",
     authDomain: "beercation-8cecd.firebaseapp.com",
     databaseURL: "https://beercation-8cecd.firebaseio.com",
@@ -358,3 +362,20 @@ $("#submit").on('click', function(){
     });
 
 });
+
+/////////////SQOOT API CALL///////////////////////////////
+
+function sqoot(URL) {    //Add articleLimit param
+    $.ajax({
+        url: URL,
+        method: "GET"
+    }).done(function (response) {
+        console.log(response);
+
+        term = $("#autocomplete").val().trim();
+
+        var searchURL = queryURL + term + "&category_slugs=bars-clubs&per_page=5&page=1&order=distance";
+
+
+    });
+}
