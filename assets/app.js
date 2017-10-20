@@ -137,7 +137,7 @@
                         addressVicinity.push(thisIsHere);
                     }
 
-                    var queryURL= "http://api.sqoot.com/v2/deals?api_key=72287g&location=";
+                    var queryURL= "https://api.sqoot.com/v2/deals?api_key=72287g&location=";
                     var term=$("#autocomplete").val().trim();
                     var searchURL;
 
