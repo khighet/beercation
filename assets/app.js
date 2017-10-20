@@ -383,4 +383,4 @@ function sqoot(URL) {    //Add articleLimit param
 
 
     });
-}
+};
