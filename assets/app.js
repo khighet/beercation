@@ -371,6 +371,8 @@ $("#submit").on('click', function(){
 /////////////SQOOT API CALL///////////////////////////////
 
 function sqoot(URL) {    //Add articleLimit param
+    console.log("here is the URL:")
+    console.log(URL)
     $.ajax({
         url: URL,
         method: "GET"
