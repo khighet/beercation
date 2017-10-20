@@ -382,7 +382,7 @@ function sqoot(URL) {    //Add articleLimit param
         for (i = 0; i < deals.length; i++) {
              $("#title").text(deals[i].deal.title);
              $("#description").text(deals[i].deal.description);
-             $("#untrackedURL").html("deals[i].deal.untracked_url");
+             $("#untrackedURL").html(deals[i].deal.untracked_url);
         }
 
         console.log(response);
