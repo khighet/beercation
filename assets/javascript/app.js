@@ -2,6 +2,7 @@
         // It allows the user to find all hotels in a given place, within a given
         // country. It then displays markers for all the hotels returned,
         // with on-click details for each hotel.
+
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -12,6 +13,11 @@
         var countryRestrict = { 'country': 'us' };
         var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
         var hostnameRegexp = new RegExp('^https?://.+?/');
+
+        var queryURL = "http://api.sqoot.com/v2/deals?api_key=72287g&location=";
+        var term;
+        var searchURL;
+
         var countries = {
             'au': {
                 center: { lat: -25.3, lng: 133.8 },
@@ -66,6 +72,7 @@
                 zoom: 5
             }
         };
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: countries['us'].zoom,
@@ -75,9 +82,11 @@
                 zoomControl: false,
                 streetViewControl: false
             });
+
             infoWindow = new google.maps.InfoWindow({
                 content: document.getElementById('info-content')
             });
+
             // Create the autocomplete object and associate it with the UI input control.
             // Restrict the search to the default country, and to place type "cities".
             autocomplete = new google.maps.places.Autocomplete(
@@ -87,11 +96,14 @@
                     componentRestrictions: countryRestrict
                 });
             places = new google.maps.places.PlacesService(map);
+
             autocomplete.addListener('place_changed', onPlaceChanged);
+
             // Add a DOM event listener to react when the user selects a country.
             document.getElementById('country').addEventListener(
                 'change', setAutocompleteCountry);
         }
+
         // When the user selects a city, get the place details for the city and
         // zoom the map in on the city.
         function onPlaceChanged() {
@@ -104,12 +116,17 @@
                 document.getElementById('autocomplete').placeholder = 'Enter a city';
             }
         }
+
         // Search for hotels in the selected city, within the viewport of the map.
         function search() {
             var search = {
                 bounds: map.getBounds(),
                 types: ['lodging']
             };
+
+
+
+
             places.nearbySearch(search, function (results, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     clearResults();
@@ -125,27 +142,36 @@
                             animation: google.maps.Animation.DROP,
                             icon: markerIcon
                         });
+
                         // If the user clicks a hotel marker, show the details of that hotel
                         // in an info window.
                         markers[i].placeResult = results[i];
                         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
                         setTimeout(dropMarker(i), i * 100);
                         addResult(results[i], i);
+
                         //console.log(results[i].vicinity, i);        //EACH ADDRESS
                         var thisIsHere = results[i].vicinity, i;
                         addressVicinity.push(thisIsHere);
-                    }
 
-            		sqoot(searchURL);       ////////////<<CALL THE SQOOT FUNCTION///////////
+
+                    }
+                    console.log("test");
+                    sqoot(searchURL);       ////////////<<CALL THE SQOOT FUNCTION///////////
                 }
             });
         }
+
+
+
+
         //////////////////////////////////////////////////////////////////////////////
         function search2() {
             var search = {
                 bounds: map.getBounds(),
                 types: ['bar']
             };
+
             places.nearbySearch(search, function (results2, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     //clearResults();
@@ -168,16 +194,33 @@
                         setTimeout(dropMarker(i), i * 100);
                         addResult2(results2[i], i);
                         console.log(results2[i], i);
+
                         // $("#nearbyBars").text(results[i]);
+
                         //console.log(results2[i].vicinity, i);        //EACH ADDRESS
                         var thisIsHere = results2[i].vicinity, i;
                         addressVicinity.push(thisIsHere);
+
+
                     }
+
                 }
+
             });
+
+
         }
         //////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
         console.log(addressVicinity);
+
         function clearMarkers() {
             for (var i = 0; i < markers.length; i++) {
                 if (markers[i]) {
@@ -202,22 +245,29 @@
             clearResults();
             clearMarkers();
         }
+
         function dropMarker(i) {
             return function () {
                 markers[i].setMap(map);
             };
         }
+
         function addResult(result, i) {
             var results = document.getElementById('results');
             var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
             var markerIcon = MARKER_PATH + markerLetter + '.png';
+
             var tr = document.createElement('tr');
             tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
             tr.onclick = function () {
                 google.maps.event.trigger(markers[i], 'click');
                 console.log(addressVicinity[i]);                    //LOGS CLICKED ADDRESS!!!!!!!
                 search2();                                          //CALLS SEARCH2 FUCNTION!!!!!
+
+
+
             };
+
             var iconTd = document.createElement('td');
             var nameTd = document.createElement('td');
             var icon = document.createElement('img');
@@ -230,18 +280,29 @@
             tr.appendChild(iconTd);
             tr.appendChild(nameTd);
             results.appendChild(tr);
+
         }
+
+
+
+
         function addResult2(result2, i) {
             var results2 = document.getElementById('results2');
             var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
             var markerIcon = MARKER_PATH + markerLetter + '.png';
+
             var tr = document.createElement('tr');
             tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
             tr.onclick = function () {
                 google.maps.event.trigger(markers[i], 'click');
                 console.log(addressVicinity[i]);                    //LOGS CLICKED ADDRESS!!!!!!!
                 //search2();                                          //CALLS SEARCH2 FUCNTION!!!!!
+
+
+
+
             };
+
             var iconTd2 = document.createElement('td');
             var nameTd2 = document.createElement('td');
             var icon2 = document.createElement('img');
@@ -254,7 +315,16 @@
             tr.appendChild(iconTd2);
             tr.appendChild(nameTd2);
             results2.appendChild(tr);
+
+
         }
+
+
+
+
+
+
+
         function clearResults() {
             var results = document.getElementById('results');
             var results2 = document.getElementById('results2');
@@ -264,6 +334,12 @@
             }
             addressVicinity = [];                                   //CLEARS ARRAY
         }
+
+
+
+
+
+
         // Get the place details for a hotel. Show the information in an info window,
         // anchored on the marker for the hotel that the user selected.
         function showInfoWindow() {
@@ -277,6 +353,7 @@
                     buildIWContent(place);
                 });
         }
+
         // Load the place information into the HTML elements used by the info window.
         function buildIWContent(place) {
             document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
@@ -284,6 +361,7 @@
             document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
                 '">' + place.name + '</a></b>';
             document.getElementById('iw-address').textContent = place.vicinity;
+
             if (place.formatted_phone_number) {
                 document.getElementById('iw-phone-row').style.display = '';
                 document.getElementById('iw-phone').textContent =
@@ -291,6 +369,7 @@
             } else {
                 document.getElementById('iw-phone-row').style.display = 'none';
             }
+
             // Assign a five-star rating to the hotel, using a black star ('&#10029;')
             // to indicate the rating the hotel has earned, and a white star ('&#10025;')
             // for the rating points not achieved.
@@ -308,6 +387,7 @@
             } else {
                 document.getElementById('iw-rating-row').style.display = 'none';
             }
+
             // The regexp isolates the first part of the URL (domain plus subdomain)
             // to give a short URL for displaying in the info window.
             if (place.website) {
@@ -325,59 +405,23 @@
         }
 
 
-        var config = {
-    apiKey: "AIzaSyBdq4yukufhzQNtwWMLxLI8Ps-cMkPf1T0",
-    authDomain: "beercation-8cecd.firebaseapp.com",
-    databaseURL: "https://beercation-8cecd.firebaseio.com",
-    projectId: "beercation-8cecd",
-    storageBucket: "beercation-8cecd.appspot.com",
-    messagingSenderId: "151097719331"
-};
 
-firebase.initializeApp(config);
+        /////////////SQOOT API CALL///////////////////////////////
 
-// Create a variable to reference the database.
-var database = firebase.database();
+        function sqoot(URL) {    //Add articleLimit param
+            $.ajax({
+                url: URL,
+                method: "GET"
+            }).done(function (response) {
+                console.log(response);
 
-// Initial Values
-var emailArray = [];
-var email = "";
+                term = $("#autocomplete").val().trim();
 
-//submits email to an array on click
-$("#submit").on('click', function(){
-  event.preventDefault();
-  
-  email = $('#email-input').val();
-
-  database.ref().push({
-        emailAddress: email,
-      });
-
-  database.ref().on("child_added", function(snapshot){
-    emailAddress = snapshot.val().emailAddress;
-    emailArray.push(emailAddress);
-    console.log(emailArray);
-    });
-
-});
+                var searchURL = queryURL + term + "&category_slugs=bars-clubs&per_page=5&page=1&order=distance";
 
 
-/////////////SQOOT API CALL///////////////////////////////
-
-function sqoot(URL) {    //Add articleLimit param
-    $.ajax({
-        url: URL,
-        method: "GET"
-    }).done(function (response) {
-        console.log(response);
-
-        term = $("#autocomplete").val().trim();
-
-        var searchURL = queryURL + term + "&category_slugs=bars-clubs&per_page=5&page=1&order=distance";
-
-
-    });
-}
+            });
+        }
 
         /////////////^SQOOT API CALL^///////////////////////////////
 
