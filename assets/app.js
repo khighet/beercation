@@ -387,10 +387,10 @@ function sqoot(URL) {    //Add articleLimit param
             var newTitle = $("<h2>" + deals[i].deal.title + "</h2>");
             title.append(newTitle);
 
-            var newDescription = $("<p>" + deals[i].deal.description);
+            var newDescription = $("<p>" + deals[i].deal.description + "</p>");
             description.append(newDescription);
 
-            var newUntrackedURL = $("<img>" + deals[i].deal.untracked_url);
+            var newUntrackedURL = $("<img>" + deals[i].deal.untracked_url + "</img>");
             untrackedURL.append(newUntrackedURL);
 
             console.log(deals[i].deal.title);
