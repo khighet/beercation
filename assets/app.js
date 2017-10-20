@@ -12,6 +12,11 @@
         var countryRestrict = { 'country': 'us' };
         var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
         var hostnameRegexp = new RegExp('^https?://.+?/');
+            
+        var queryURL= "http://api.sqoot.com/v2/deals?api_key=72287g&location=";
+        var term;
+        var searchURL;
+
         var countries = {
             'au': {
                 center: { lat: -25.3, lng: 133.8 },
