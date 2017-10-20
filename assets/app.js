@@ -376,7 +376,16 @@ function sqoot(URL) {    //Add articleLimit param
         url: URL,
         method: "GET"
     }).done(function (response) {
-        console.log(response);
 
+         var deals = response.deals
+
+        for (i = 0; i < deals.length; i++) {
+             $("#title").text(deals[i].deal.title);
+             $("#description").text(deals[i].deal.description);
+             $("#untrackedURL").html("deals[i].deal.untracked_url");
+        }
+
+        console.log(response);
+      
     });
 };
