@@ -396,7 +396,7 @@ function sqoot(URL) {    //Add articleLimit param
             var newDescription = $("<p>" + deals[i].deal.description + "</p>");
             couponInfo.append(newDescription);
 
-            var newUntrackedURL = $('<a href="' + deals[i].deal.untracked_url + '">' + deals[i].deal.untracked_url + "</a>");
+            var newUntrackedURL = $('<a href="' + deals[i].deal.untracked_url + '">' + "Click for Coupon!" + "</a>");
             couponInfo.append(newUntrackedURL)
 
             //var newCoupImg = $("<img src='deals[i].deal.image_url' />");
