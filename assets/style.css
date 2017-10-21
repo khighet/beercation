@@ -132,4 +132,9 @@ body{
 	font-weight: bolder;
 }
 
+#coupons {
+      font-weight: bold;
+      background-color: rgba(252, 217, 63, 0.6);
+}
+
 

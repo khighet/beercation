@@ -143,6 +143,7 @@
 
                     var searchURL = queryURL + term + "&category_slugs=bars-clubs&per_page=5&page=1&order=distance";
                     sqoot(searchURL);
+
                 }
             });
         }
@@ -393,8 +394,9 @@ function sqoot(URL) {    //Add articleLimit param
             var newDescription = $("<p>" + deals[i].deal.description + "</p>");
             couponInfo.append(newDescription);
 
-            var newUntrackedURL = $("<a>" + deals[i].deal.untracked_url + "</a>");
+            var newUntrackedURL = $("<a href='deals[i].deal.untracked_url'>" + deals[i].deal.untracked_url + "</a>");
             couponInfo.append(newUntrackedURL);
+
 
             console.log(deals[i].deal.title);
             console.log(deals[i].deal.description);
